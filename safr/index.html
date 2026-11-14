@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>try{var t=localStorage.getItem('ma-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='light'}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digitising Firearms Licensing – BA Case Study | Marshal Anthony</title>
- <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%234285f4'/><stop offset='0.5' stop-color='%239b72cb'/><stop offset='1' stop-color='%23d96570'/></linearGradient></defs><rect width='100' height='100' rx='22' fill='url(%23g)'/><text x='50' y='66' font-size='46' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>MA</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231e3a8a'/%3E%3Cstop offset='.5' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%230d9488'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0f2a44; --blue:#1f6feb; --teal:#0ea5a4; --amber:#f59e0b; --red:#e5484d; --green:#16a34a;
+  --navy:#0f2a44; --blue:#2563eb; --teal:#0d9488; --amber:#f59e0b; --red:#e5484d; --green:#16a34a;
   --ink:#1b2430; --muted:#5b6877; --line:#e3e8ef; --bg:#f6f8fb; --card:#fff; --paper:#9aa5b1;
 }
 *{box-sizing:border-box}
@@ -16,7 +17,7 @@ html{scroll-behavior:smooth}
 body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
 a{color:var(--blue)}
 /* Hero */
-.hero{background:linear-gradient(135deg,#0f2a44 0%,#163e66 55%,#1f6feb 100%);color:#fff;padding:56px 24px 56px}
+.hero{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 55%,#0d9488 100%);color:#fff;padding:56px 24px 56px}
 .hero .wrap{max-width:1100px;margin:auto}
 .tag{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.3px}
 .hero h1{font-size:clamp(30px,5vw,48px);line-height:1.15;margin:16px 0 10px;font-weight:800}
@@ -43,7 +44,7 @@ h3{font-size:19px;color:var(--navy);margin:28px 0 10px}
 /* Tables */
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
 table{width:100%;border-collapse:collapse;font-size:14.5px}
-th{background:#f1f5fa;text-align:left;font-weight:700;color:var(--navy);padding:11px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--th);text-align:left;font-weight:700;color:var(--navy);padding:11px 14px;border-bottom:1px solid var(--line)}
 td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
 tr:last-child td{border-bottom:0}
 td b{color:var(--navy)}
@@ -71,7 +72,7 @@ td b{color:var(--navy)}
 .lanes{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
 .lane{display:grid;grid-template-columns:150px 1fr;border-bottom:1px dashed var(--line)}
 .lane:last-child{border-bottom:0}
-.lane .who{background:#f1f5fa;font-weight:700;font-size:13px;color:var(--navy);padding:14px;display:flex;align-items:center}
+.lane .who{background:var(--soft);font-weight:700;font-size:13px;color:var(--navy);padding:14px;display:flex;align-items:center}
 .lane .steps{display:flex;gap:10px;flex-wrap:wrap;padding:12px;align-items:center}
 .step{background:#fff;border:2px solid var(--blue);border-radius:10px;padding:7px 11px;font-size:13px;font-weight:500;max-width:220px}
 .step.p{border-color:var(--paper)} .step.x{border-color:var(--red);background:#fff5f5} .step.h{border-color:var(--amber);background:#fffaf0} .step.auto{border-color:var(--teal);background:#effbfb}
@@ -80,7 +81,7 @@ td b{color:var(--navy)}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:10px 0}
 .legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:2px solid var(--c)}
 .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.stat{background:#f1f5fa;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600}
+.stat{background:var(--soft);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600}
 /* Timeline */
 .tl{position:relative;padding-left:0}
 .tlrow{display:grid;grid-template-columns:200px 1fr;gap:12px;align-items:center;margin:10px 0;font-size:14px}
@@ -129,6 +130,46 @@ footer{background:var(--navy);color:#c8d6e5;padding:32px 20px;font-size:13.5px}
 footer .wrap{max-width:1100px;margin:auto}
 .toTop{position:fixed;right:18px;bottom:18px;background:var(--blue);color:#fff;border:0;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 6px 18px rgba(31,111,235,.4);opacity:0;pointer-events:none;transition:.2s}
 .toTop.show{opacity:1;pointer-events:auto}
+
+.theme-btn{position:relative;width:62px;height:32px;border-radius:999px;border:1px solid var(--tb-b);background:var(--tb-bg);cursor:pointer;flex:none;padding:0;transition:background .4s}
+.theme-btn .knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 12px rgba(245,158,11,.6);display:grid;place-items:center;font-size:13px;transition:transform .45s cubic-bezier(.6,-.3,.3,1.4),background .4s}
+.theme-btn .knob::before{content:"☀"}
+[data-theme=dark] .theme-btn .knob{transform:translateX(30px);background:linear-gradient(135deg,#1e293b,#334155);box-shadow:0 0 12px rgba(96,165,250,.6)}
+[data-theme=dark] .theme-btn .knob::before{content:"☾";color:#bfdbfe}
+.theme-btn .stars{position:absolute;inset:0;border-radius:999px;overflow:hidden;opacity:0;transition:opacity .4s}
+.theme-btn .stars::before,.theme-btn .stars::after{content:"";position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;top:9px;left:12px;box-shadow:6px 8px #fff,12px 2px #fff}
+[data-theme=dark] .theme-btn .stars{opacity:1}
+html{transition:background-color .4s}
+body,.glass,.card,.tbl,.kpi,.phase,.lanes,nav,header.nav{transition:background-color .4s,color .4s,border-color .4s}
+
+:root{--tb-bg:#e2e8f0;--tb-b:rgba(15,42,68,.12);--th:#f1f5fa;--soft:#f1f5fa}
+[data-theme=dark]{--ink:#e6edf8;--muted:#98a6c0;--line:rgba(255,255,255,.09);--bg:#060a14;--card:#0d1526;--navy:#dbe7ff;--th:#13203a;--soft:#13203a;--tb-bg:#0f172a;--tb-b:rgba(255,255,255,.15)}
+[data-theme=dark] .hero{background:linear-gradient(135deg,#0b1736 0%,#13306b 55%,#0f5e58 100%)}
+[data-theme=dark] nav{background:rgba(8,13,26,.92)}
+[data-theme=dark] nav a:hover,[data-theme=dark] nav a.active{background:rgba(96,165,250,.12);color:#93c5fd}
+[data-theme=dark] .kpi,[data-theme=dark] .tbl,[data-theme=dark] .phase,[data-theme=dark] .lanes,[data-theme=dark] .ac li,[data-theme=dark] .step{background:var(--card)}
+[data-theme=dark] th{background:var(--th)}
+[data-theme=dark] .lane .who,[data-theme=dark] .stat{background:var(--soft)}
+[data-theme=dark] .step.x{background:#2a1418}[data-theme=dark] .step.h{background:#2a2110}[data-theme=dark] .step.auto{background:#0e2726}
+[data-theme=dark] .gate{background:#2a2110}
+[data-theme=dark] .notice{background:#221b0b;border-color:#5c4410}
+[data-theme=dark] .insight{background:#0f1d38}
+[data-theme=dark] .story{background:linear-gradient(135deg,#0f1d38,#0d2424);border-color:#1e3a5f}
+[data-theme=dark] .track{background:#1a2742}
+[data-theme=dark] .quad[style]{filter:brightness(.35) saturate(1.3)}
+[data-theme=dark] .quad h5,[data-theme=dark] .quad .chip{filter:brightness(2.6)}
+[data-theme=dark] .chip{background:var(--card);color:var(--ink)}
+[data-theme=dark] .must{background:#3a1416;color:#fca5a5}[data-theme=dark] .should{background:#3a2a0e;color:#fcd34d}
+[data-theme=dark] .could{background:#0e3030;color:#5eead4}[data-theme=dark] .wont{background:#1e2533;color:#a3b0c5}
+[data-theme=dark] .hi{background:#3a1416;color:#fca5a5}[data-theme=dark] .med{background:#3a2a0e;color:#fcd34d}[data-theme=dark] .lo{background:#0f2e1c;color:#86efac}
+[data-theme=dark] .good{color:#4ade80}
+[data-theme=dark] .tlrow[style]{background:#2a1418!important}
+[data-theme=dark] footer{background:#03060d}
+[data-theme=dark] .step .num{background:#2563eb}
+[data-theme=dark] .ac li::before{color:#fff}
+[data-theme=dark] .skills span{background:#1e3a8a}
+.navbar-row{display:flex;align-items:center;gap:8px}
+.back{white-space:nowrap;text-decoration:none;font-size:14px;font-weight:700;color:var(--blue)!important;padding:8px 12px;border-radius:8px}
 @media(max-width:640px){nav .wrap{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start}.lane{grid-template-columns:1fr}.tlrow{grid-template-columns:1fr}.pgrid{height:auto;grid-template-columns:1fr;grid-template-rows:auto}.ax{display:none}}
 </style>
 </head>
@@ -143,12 +184,12 @@ footer .wrap{max-width:1100px;margin:auto}
   </div>
 </header>
 
-<nav><div class="wrap" id="navlinks">
+<nav><div class="wrap" style="display:flex;align-items:center;gap:8px;max-width:1100px;padding:8px 16px"><a class="back" href="../">← Portfolio</a><button class="theme-btn" type="button" aria-label="Toggle dark mode"><span class="stars"></span><span class="knob"></span></button><div style="width:1px;height:22px;background:var(--line)"></div><div id="navlinks" style="display:flex;flex-wrap:wrap;gap:2px 4px;justify-content:center;flex:1">
   <a href="#glance">At a Glance</a><a href="#problem">Problem</a><a href="#objectives">Objectives</a><a href="#approach">Approach</a>
   <a href="#process">Process Maps</a><a href="#rootcause">Root Cause</a><a href="#timeline">Time to Licence</a><a href="#stakeholders">Stakeholders</a>
   <a href="#requirements">Requirements</a><a href="#change">Change Impact</a><a href="#dashboard">Power BI</a><a href="#results">Results</a>
   <a href="#stories">User Stories</a><a href="#casestudy">Case Study</a><a href="#learned">Learnings</a><a href="#about">About</a>
-</div></nav>
+</div></div></nav>
 
 <main>
 
@@ -700,6 +741,17 @@ window.addEventListener('scroll',()=>{
   tt.classList.toggle('show',window.scrollY>600);
 },{passive:true});
 tt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* Theme switch — shared across all pages via localStorage key 'ma-theme' */
+(function(){
+  const root=document.documentElement;
+  function set(t){root.dataset.theme=t;try{localStorage.setItem('ma-theme',t)}catch(e){}
+    document.querySelectorAll('.theme-btn').forEach(b=>{b.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');b.title=b.getAttribute('aria-label')});
+    window.dispatchEvent(new Event('themechange'))}
+  document.querySelectorAll('.theme-btn').forEach(b=>b.addEventListener('click',()=>set(root.dataset.theme==='dark'?'light':'dark')));
+  set(root.dataset.theme||'light');
+  addEventListener('storage',e=>{if(e.key==='ma-theme'&&e.newValue)set(e.newValue)});
+})();
 </script>
 </body>
 </html>

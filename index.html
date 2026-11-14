@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digitising Firearms Licensing – BA Case Study | Marshal Anthony</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f2a44; --blue:#1f6feb; --teal:#0ea5a4; --amber:#f59e0b; --red:#e5484d; --green:#16a34a;
+  --ink:#1b2430; --muted:#5b6877; --line:#e3e8ef; --bg:#f6f8fb; --card:#fff; --paper:#9aa5b1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{color:var(--blue)}
+/* Hero */
+.hero{background:linear-gradient(135deg,#0f2a44 0%,#163e66 55%,#1f6feb 100%);color:#fff;padding:56px 24px 56px}
+.hero .wrap{max-width:1100px;margin:auto}
+.tag{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.3px}
+.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.15;margin:16px 0 10px;font-weight:800}
+.hero p.sub{font-size:18px;opacity:.9;max-width:760px;margin:0}
+.hero .by{margin-top:18px;font-size:15px;opacity:.85}
+/* Nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{max-width:1100px;margin:auto;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 4px;padding:8px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:13.5px;font-weight:600;padding:6px 10px;border-radius:8px}
+nav a:hover,nav a.active{background:#eaf2ff;color:var(--blue)}
+main{max-width:1100px;margin:auto;padding:0 20px 60px}
+section{padding-top:56px;scroll-margin-top:110px}
+h2{font-size:28px;margin:0 0 6px;color:var(--navy)}
+h2 .n{color:var(--blue);margin-right:8px}
+h3{font-size:19px;color:var(--navy);margin:28px 0 10px}
+.lead{color:var(--muted);margin:0 0 20px;font-size:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(15,42,68,.05)}
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px;position:relative}
+.kpi{background:#fff;border-radius:14px;padding:18px 20px;border:1px solid var(--line);box-shadow:0 8px 24px rgba(15,42,68,.08)}
+.kpi .v{font-size:32px;font-weight:800;color:var(--navy);line-height:1.1}
+.kpi .l{font-size:13px;color:var(--muted);font-weight:500;margin-top:4px}
+.kpi.b{border-top:4px solid var(--blue)} .kpi.t{border-top:4px solid var(--teal)} .kpi.a{border-top:4px solid var(--amber)} .kpi.g{border-top:4px solid var(--green)}
+/* Tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{background:#f1f5fa;text-align:left;font-weight:700;color:var(--navy);padding:11px 14px;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td b{color:var(--navy)}
+.good{color:var(--green);font-weight:700}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.must{background:#fde8e8;color:#b42318}.should{background:#fff4e0;color:#b45309}.could{background:#e6f6f6;color:#0b7a79}.wont{background:#eef0f3;color:#5b6877}
+.hi{background:#fde8e8;color:#b42318}.med{background:#fff4e0;color:#b45309}.lo{background:#e7f6ec;color:#15803d}
+/* Notice */
+.notice{background:#fffbeb;border:1px solid #fde68a;border-left:5px solid var(--amber);border-radius:12px;padding:16px 20px;margin-top:24px}
+.notice ul{margin:6px 0 0;padding-left:20px}
+.insight{background:#eaf2ff;border-left:5px solid var(--blue);border-radius:10px;padding:14px 18px;margin-top:16px}
+/* Grid */
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.mini h4{margin:0 0 6px;color:var(--navy)}
+.mini p{margin:0;color:var(--muted);font-size:14.5px}
+.ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-weight:800;color:#fff;margin-bottom:10px}
+/* Phases */
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.phase{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;position:relative}
+.phase .wk{font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px}
+.phase h4{margin:4px 0 6px;color:var(--navy)}
+.phase p{margin:0;font-size:13.5px;color:var(--muted)}
+/* Swimlanes */
+.lanes{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.lane{display:grid;grid-template-columns:150px 1fr;border-bottom:1px dashed var(--line)}
+.lane:last-child{border-bottom:0}
+.lane .who{background:#f1f5fa;font-weight:700;font-size:13px;color:var(--navy);padding:14px;display:flex;align-items:center}
+.lane .steps{display:flex;gap:10px;flex-wrap:wrap;padding:12px;align-items:center}
+.step{background:#fff;border:2px solid var(--blue);border-radius:10px;padding:7px 11px;font-size:13px;font-weight:500;max-width:220px}
+.step.p{border-color:var(--paper)} .step.x{border-color:var(--red);background:#fff5f5} .step.h{border-color:var(--amber);background:#fffaf0} .step.auto{border-color:var(--teal);background:#effbfb}
+.step .num{display:inline-block;background:var(--navy);color:#fff;border-radius:50%;width:20px;height:20px;font-size:11px;text-align:center;line-height:20px;margin-right:5px}
+.gate{transform:rotate(0);background:#fff7e6;border:2px solid var(--amber);border-radius:6px;padding:6px 10px;font-size:12.5px;font-weight:700}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:10px 0}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:2px solid var(--c)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.stat{background:#f1f5fa;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600}
+/* Timeline */
+.tl{position:relative;padding-left:0}
+.tlrow{display:grid;grid-template-columns:200px 1fr;gap:12px;align-items:center;margin:10px 0;font-size:14px}
+.bar{height:26px;border-radius:6px;position:relative;display:flex;align-items:center;padding:0 10px;color:#fff;font-weight:700;font-size:12.5px}
+.track{background:#eef2f7;border-radius:6px}
+/* Stakeholder grid */
+.pgrid{display:grid;grid-template-columns:30px 1fr 1fr;grid-template-rows:1fr 1fr 30px;gap:8px;height:420px}
+.quad{border-radius:12px;padding:12px;font-size:13px}
+.quad h5{margin:0 0 6px;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+.chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 10px;margin:3px 3px 0 0;font-weight:600;font-size:12.5px}
+.ax{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--muted)}
+.ax.y{writing-mode:vertical-rl;transform:rotate(180deg)}
+/* Dashboard mock */
+.dash{background:#0f1b2b;border-radius:16px;padding:18px;color:#dbe7f5}
+.dash .top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.dash .title{font-weight:800;font-size:16px;color:#fff}
+.dtabs{display:flex;gap:6px}
+.dtabs button{background:#1b2a3f;color:#9fb3c8;border:0;border-radius:8px;padding:7px 12px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer}
+.dtabs button.on{background:var(--blue);color:#fff}
+.dk{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.dk div{background:#16263a;border-radius:10px;padding:12px}
+.dk b{display:block;font-size:24px;color:#fff}
+.dk small{color:#8aa2bb;font-size:12px}
+.dpanel{display:none}.dpanel.on{display:block}
+.dcharts{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.dc{background:#16263a;border-radius:10px;padding:12px}
+.dc h6{margin:0 0 8px;font-size:13px;color:#cfe0f2}
+.slicers{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.slicers span{background:#1b2a3f;border-radius:6px;padding:4px 10px;font-size:12px;color:#9fb3c8}
+.watermark{font-size:11.5px;color:#7f93a8;margin-top:10px}
+pre{background:#0f1b2b;color:#cde3ff;border-radius:12px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.5}
+/* User story */
+.story{background:linear-gradient(135deg,#eaf2ff,#f3fbfb);border:1px solid #cfe0fb;border-radius:14px;padding:20px}
+.story blockquote{margin:0 0 12px;font-size:17px;color:var(--navy)}
+.ac{counter-reset:ac;list-style:none;padding:0}
+.ac li{counter-increment:ac;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px 10px 46px;margin:8px 0;position:relative;font-size:14.5px}
+.ac li::before{content:counter(ac);position:absolute;left:12px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;font-size:12px;display:grid;place-items:center}
+.kw{font-weight:700;color:var(--blue)}
+/* STAR */
+.star{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.star .card h4{margin:0 0 8px;font-size:15px}
+.star .S h4{color:var(--blue)}.star .T h4{color:var(--teal)}.star .A h4{color:var(--amber)}.star .R h4{color:var(--green)}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.skills span{background:var(--navy);color:#fff;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600}
+footer{background:var(--navy);color:#c8d6e5;padding:32px 20px;font-size:13.5px}
+footer .wrap{max-width:1100px;margin:auto}
+.toTop{position:fixed;right:18px;bottom:18px;background:var(--blue);color:#fff;border:0;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 6px 18px rgba(31,111,235,.4);opacity:0;pointer-events:none;transition:.2s}
+.toTop.show{opacity:1;pointer-events:auto}
+@media(max-width:640px){nav .wrap{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start}.lane{grid-template-columns:1fr}.tlrow{grid-template-columns:1fr}.pgrid{height:auto;grid-template-columns:1fr;grid-template-rows:auto}.ax{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="tag">Independent Business Analysis Case Study</span>
+    <h1>Digitising Firearms Licensing in South Australia</h1>
+    <p class="sub">How moving firearms licence applications from paper to an online portal could cut the time to licence from <b>about 5 months to about 3 months</b>, removing double data entry and the postal rework loops that cause most delays.</p>
+    <div class="by"><b>Marshal Anthony</b> · Business Analyst · Master of Computer Science · SA Public Sector</div>
+  </div>
+</header>
+
+<nav><div class="wrap" id="navlinks">
+  <a href="#glance">At a Glance</a><a href="#problem">Problem</a><a href="#objectives">Objectives</a><a href="#approach">Approach</a>
+  <a href="#process">Process Maps</a><a href="#rootcause">Root Cause</a><a href="#timeline">Time to Licence</a><a href="#stakeholders">Stakeholders</a>
+  <a href="#requirements">Requirements</a><a href="#change">Change Impact</a><a href="#dashboard">Power BI</a><a href="#results">Results</a>
+  <a href="#stories">User Stories</a><a href="#casestudy">Case Study</a><a href="#learned">Learnings</a><a href="#about">About</a>
+</div></nav>
+
+<main>
+
+<section id="glance" style="padding-top:0">
+  <div class="kpis">
+    <div class="kpi b"><div class="v">~65 days</div><div class="l">faster to licence (best case, 44%)</div></div>
+    <div class="kpi t"><div class="v">7 of 8</div><div class="l">key process steps automated</div></div>
+    <div class="kpi a"><div class="v">~95%</div><div class="l">shorter rework loop for missing documents</div></div>
+    <div class="kpi g"><div class="v">0</div><div class="l">manual re-typing &amp; in-person visits</div></div>
+  </div>
+
+  <h2 style="margin-top:40px">At a Glance</h2>
+  <div class="tbl"><table>
+    <tr><td style="width:180px"><b>Project</b></td><td>Paper-to-digital transformation of new firearms licence applications, modelled on SAPOL's publicly announced South Australian Firearms Register (SAFR) program</td></tr>
+    <tr><td><b>Type</b></td><td>Independent business analysis case study (self-initiated)</td></tr>
+    <tr><td><b>My perspective</b></td><td>Firearms Adjudication Clerk (ASO2), SAPOL Firearms Branch — daily user of the current paper process</td></tr>
+    <tr><td><b>Duration</b></td><td>6 weeks, completed alongside full-time work</td></tr>
+    <tr><td><b>Tools</b></td><td>draw.io (BPMN 2.0), Microsoft Excel, Power BI, Microsoft Word</td></tr>
+    <tr><td><b>BA techniques</b></td><td>Process modelling, root cause analysis, stakeholder analysis, requirements elicitation, MoSCoW prioritisation, user stories, change impact assessment, KPI design</td></tr>
+  </table></div>
+
+  <h3>Projected Outcomes (illustrative)</h3>
+  <div class="tbl"><table>
+    <tr><th>Measure</th><th>Current state</th><th>Future state</th><th>Improvement</th></tr>
+    <tr><td>Time to licence (best case)</td><td>~147 days</td><td>~82 days</td><td class="good">~65 days faster (44%)</td></tr>
+    <tr><td>Time to licence (missing document)</td><td>~217 days</td><td>~89 days</td><td class="good">~128 days faster (59%)</td></tr>
+    <tr><td>Rework loop for a missing document</td><td>3–6 weeks</td><td>1–3 days</td><td class="good">~95% shorter</td></tr>
+    <tr><td>Key process steps automated</td><td>0 of 8</td><td>7 of 8</td><td class="good">Only the suitability decision stays human</td></tr>
+    <tr><td>Manual data entry</td><td>Every application re-typed</td><td>Captured once by applicant</td><td class="good">Double handling removed</td></tr>
+    <tr><td>In-person visits required</td><td>1</td><td>0</td><td class="good">Fully online</td></tr>
+  </table></div>
+
+  <div class="notice">
+    <b>Scope and confidentiality</b>
+    <ul>
+      <li>This is an <b>independent case study</b> created to demonstrate business analysis capability. I was <b>not a member of the SAFR project team</b>, and this work does not represent SAPOL's official analysis, design or results.</li>
+      <li>The future state is based on <b>publicly available information</b> about SAFR. Steps not confirmed publicly are marked <b>(A)</b> for assumption.</li>
+      <li>All figures, dates and dashboard data are <b>illustrative estimates or fictional sample data</b>. No confidential SAPOL data, documents, system detail or operational procedures are used.</li>
+      <li>Outcomes are <b>projected</b>, not measured results.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="problem">
+  <h2><span class="n">01</span>The Problem</h2>
+  <p class="lead">Applying for a firearms licence in South Australia has traditionally been paper-based: a PD303 form, an in-person lodgement, physical transfer to Firearms Branch, and manual re-entry into the register.</p>
+  <div class="g2" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+    <div class="card mini"><div class="ico" style="background:var(--red)">2×</div><h4>Double data entry</h4><p>Every application is written by the applicant and re-typed by staff — double effort and transcription errors.</p></div>
+    <div class="card mini"><div class="ico" style="background:var(--amber)">!</div><h4>Incomplete applications</h4><p>A paper form can't stop someone submitting without a key document. Each gap triggers a slow rework loop.</p></div>
+    <div class="card mini"><div class="ico" style="background:var(--blue)">?</div><h4>No visibility</h4><p>Applicants can't see where their application is, so they call and email — taking officer time away from processing.</p></div>
+    <div class="card mini"><div class="ico" style="background:var(--paper)">✉</div><h4>Slow paper communication</h4><p>Postal transit, outcome letters and posted licence cards add weeks.</p></div>
+  </div>
+  <div class="insight"><b>Problem statement:</b> <i>"Paper-based firearms licence applications create double handling, rework and long waiting times for applicants and Firearms Branch, because the current process has no validation at lodgement, no digital data flow, and no self-service status tracking."</i></div>
+</section>
+
+<section id="objectives">
+  <h2><span class="n">02</span>Objectives</h2>
+  <div class="tbl"><table>
+    <tr><th>#</th><th>Objective</th><th>Success measure</th></tr>
+    <tr><td><b>O1</b></td><td>Reduce time from application to licence</td><td>Best-case time to licence reduced by 40%+</td></tr>
+    <tr><td><b>O2</b></td><td>Eliminate double data entry</td><td>100% of online applications enter the register without re-typing</td></tr>
+    <tr><td><b>O3</b></td><td>Reduce incomplete applications</td><td>Rework requests reduced by 70%+</td></tr>
+    <tr><td><b>O4</b></td><td>Improve applicant visibility</td><td>Status available online 24/7; fewer status enquiries</td></tr>
+    <tr><td><b>O5</b></td><td>Maintain public safety and legal compliance</td><td>100% of suitability decisions remain with trained officers; legislated rules enforced</td></tr>
+  </table></div>
+</section>
+
+<section id="approach">
+  <h2><span class="n">03</span>My Approach</h2>
+  <p class="lead">A standard business analysis lifecycle, adapted to a self-initiated case study.</p>
+  <div class="phases">
+    <div class="phase"><div class="wk">Week 1</div><h4>1. Discover</h4><p>Reviewed public SAFR info, the PD303 form and Firearms Act requirements; documented the current process.</p></div>
+    <div class="phase"><div class="wk">Week 2</div><h4>2. Model</h4><p>As-is and to-be BPMN 2.0 maps; pain point register.</p></div>
+    <div class="phase"><div class="wk">Week 3</div><h4>3. Analyse</h4><p>Time-to-licence model from 1 January; delay scenarios.</p></div>
+    <div class="phase"><div class="wk">Week 4</div><h4>4. Define</h4><p>Stakeholder analysis, MoSCoW requirements, user stories.</p></div>
+    <div class="phase"><div class="wk">Week 5</div><h4>5. Assess</h4><p>Change impact matrix for each stakeholder group.</p></div>
+    <div class="phase"><div class="wk">Week 6</div><h4>6. Measure</h4><p>KPI design and a Power BI dashboard on sample data.</p></div>
+  </div>
+</section>
+
+<section id="process">
+  <h2><span class="n">04</span>Process Mapping (BPMN 2.0)</h2>
+  <p class="lead">Both processes modelled with swimlanes, so you can see <b>who does what, where work changes hands, and where it loops back</b>.</p>
+  <div class="legend">
+    <span style="--c:var(--paper)">Paper / manual</span><span style="--c:var(--teal)">Automated</span><span style="--c:var(--amber)">Human decision</span><span style="--c:var(--red)">Rework / delay</span>
+  </div>
+
+  <h3>4.1 Current State (As-Is): Paper-Based</h3>
+  <div class="lanes">
+    <div class="lane"><div class="who">Applicant</div><div class="steps">
+      <div class="step p"><span class="num">1</span>Completes paper PD303 form</div><span>→</span>
+      <div class="step p"><span class="num">2</span>Attends service point in person</div>
+      <div class="step p" style="margin-left:auto"><span class="num">9</span>Completes safety training</div></div></div>
+    <div class="lane"><div class="who">Service Point</div><div class="steps">
+      <div class="step p"><span class="num">3</span>Checks ID, takes photo, takes payment</div><span>→</span>
+      <div class="step p"><span class="num">4</span>Posts paper application to Firearms Branch</div></div></div>
+    <div class="lane"><div class="who">Registry</div><div class="steps">
+      <div class="step p"><span class="num">5</span>Checks form is complete</div><span>→</span>
+      <div class="gate">◆ 6. Complete?</div>
+      <div class="step x">No → letter/email for missing info (rework loop)</div>
+      <div class="step p">Yes → manually re-types into register</div>
+      <div class="step p"><span class="num">10</span>Issues licence; card posted</div></div></div>
+    <div class="lane"><div class="who">Adjudication</div><div class="steps">
+      <div class="step h"><span class="num">7</span>Fit &amp; proper person assessment</div><span>→</span>
+      <div class="gate">◆ 8. Suitable?</div>
+      <div class="step p">No → refusal letter posted</div>
+      <div class="step p">Yes → approval to train sent</div></div></div>
+  </div>
+  <div class="stats"><span class="stat">Hand-offs: 4</span><span class="stat">Manual data entry points: 2</span><span class="stat">Paper transfers: 2</span><span class="stat">Rework loops: 1 (unlimited repeats)</span></div>
+
+  <h3>4.2 Future State (To-Be): Online Portal</h3>
+  <div class="lanes">
+    <div class="lane"><div class="who">Applicant</div><div class="steps">
+      <div class="step"><span class="num">1</span>Logs in to online portal (A)</div><span>→</span>
+      <div class="step auto"><span class="num">2</span>Guided form — submission blocked until complete (A)</div><span>→</span>
+      <div class="step"><span class="num">3</span>Uploads ID &amp; photo, pays online, submits</div>
+      <div class="step" style="margin-left:auto"><span class="num">10</span>Completes training → digital licence in mySA GOV app</div></div></div>
+    <div class="lane"><div class="who">Portal / System</div><div class="steps">
+      <div class="step auto"><span class="num">4</span>Auto email with reference number</div><span>→</span>
+      <div class="step auto"><span class="num">5</span>Data written straight into register — no re-typing (A)</div>
+      <div class="step auto">Outcome sent instantly by email &amp; portal</div></div></div>
+    <div class="lane"><div class="who">Registry</div><div class="steps">
+      <div class="step"><span class="num">6</span>Reviews from digital queue, oldest first (A)</div><span>→</span>
+      <div class="gate">◆ 7. Anything missing?</div>
+      <div class="step auto">Yes → portal request; applicant uploads within days (A)</div></div></div>
+    <div class="lane"><div class="who">Adjudication</div><div class="steps">
+      <div class="step h"><span class="num">8</span>Suitability assessment — stays human</div><span>→</span>
+      <div class="gate">◆ 9. Suitable?</div></div></div>
+  </div>
+  <div class="stats"><span class="stat">Hand-offs: 3</span><span class="stat">Manual data entry points: 0</span><span class="stat">Paper transfers: 0</span><span class="stat">Rework loops: 1 (short, digital)</span></div>
+
+  <h3>4.3 What Changed</h3>
+  <div class="tbl"><table>
+    <tr><th>Area</th><th>As-Is</th><th>To-Be</th><th>Benefit</th></tr>
+    <tr><td><b>Form</b></td><td>Paper PD303</td><td>Guided online form with validation (A)</td><td>Incomplete applications largely prevented</td></tr>
+    <tr><td><b>Lodgement</b></td><td>In person</td><td>Online, 24/7</td><td>Access for regional and working applicants</td></tr>
+    <tr><td><b>Data capture</b></td><td>Typed twice</td><td>Captured once</td><td>Transcription errors removed</td></tr>
+    <tr><td><b>Transfer</b></td><td>Physical transit (3–7 days)</td><td>Instant</td><td>Days saved on every application</td></tr>
+    <tr><td><b>Missing documents</b></td><td>Letter / email, 3–6 weeks</td><td>Portal request, 1–3 days (A)</td><td>Rework loop ~95% shorter</td></tr>
+    <tr><td><b>Status</b></td><td>Phone and email enquiries</td><td>Live portal status (A)</td><td>Officer time freed</td></tr>
+    <tr><td><b>Outcome</b></td><td>Posted letter</td><td>Email + portal</td><td>Same-day notification</td></tr>
+    <tr><td><b>Licence</b></td><td>Posted card</td><td>Digital licence (mySA GOV app)</td><td>No postal delay or loss</td></tr>
+  </table></div>
+</section>
+
+<section id="rootcause">
+  <h2><span class="n">05</span>Root Cause Analysis</h2>
+  <p class="lead"><b>5 Whys</b> on the main problem: <i>"Why does it take ~5 months to receive a licence?"</i></p>
+  <div class="card">
+    <div class="tlrow"><b>Why?</b><span>Applications wait weeks in a queue before assessment starts.</span></div>
+    <div class="tlrow"><b>Why?</b><span>Each application needs manual handling: transit, completeness checking and re-typing.</span></div>
+    <div class="tlrow"><b>Why?</b><span>Applications arrive on paper, often incomplete.</span></div>
+    <div class="tlrow"><b>Why?</b><span>A paper form cannot validate information at the point of lodgement.</span></div>
+    <div class="tlrow" style="background:#fff5f5;border-radius:8px;padding:8px"><b style="color:var(--red)">Root cause</b><span><b>The process relies on unvalidated paper capture with no digital data flow between the applicant and the register.</b></span></div>
+  </div>
+  <h3>Pain points traced to requirements</h3>
+  <div class="tbl"><table>
+    <tr><th>Pain point</th><th>Root cause</th><th>Addressed by</th></tr>
+    <tr><td>Double data entry</td><td>No digital data flow</td><td>BR-06</td></tr>
+    <tr><td>Incomplete applications</td><td>No validation at lodgement</td><td>BR-02</td></tr>
+    <tr><td>Slow rework</td><td>Postal / email requests</td><td>BR-08</td></tr>
+    <tr><td>Status enquiries</td><td>No applicant visibility</td><td>BR-09</td></tr>
+    <tr><td>Postal delays</td><td>Paper outcomes and cards</td><td>BR-10, BR-11</td></tr>
+  </table></div>
+</section>
+
+<section id="timeline">
+  <h2><span class="n">06</span>Time-to-Licence Analysis</h2>
+  <p class="lead">One applicant applies on <b>1 January 2027</b> through both processes.</p>
+  <div class="card">
+    <div class="tlrow"><span><b>Current — best case</b><br><small>~147 days · ~28 May</small></span><div class="track"><div class="bar" style="width:68%;background:var(--paper)">147 days</div></div></div>
+    <div class="tlrow"><span><b>Current — missing document</b><br><small>~217 days · ~6 Aug</small></span><div class="track"><div class="bar" style="width:100%;background:var(--red)">217 days</div></div></div>
+    <div class="tlrow"><span><b>Future — best case</b><br><small>~82 days · ~24 Mar</small></span><div class="track"><div class="bar" style="width:38%;background:var(--blue)">82 days</div></div></div>
+    <div class="tlrow"><span><b>Future — missing document</b><br><small>~89 days · ~31 Mar</small></span><div class="track"><div class="bar" style="width:41%;background:var(--teal)">89 days</div></div></div>
+  </div>
+  <h3>6.1 Milestone Dates</h3>
+  <div class="tbl"><table>
+    <tr><th>Milestone</th><th>Current state</th><th>Future state</th><th>Days saved</th></tr>
+    <tr><td>Application lodged</td><td>5 Jan (public holiday 1 Jan; must attend in person)</td><td>1 Jan (online)</td><td>4</td></tr>
+    <tr><td>Received by Firearms Branch</td><td>12 Jan</td><td>1 Jan</td><td>11</td></tr>
+    <tr><td>Assessment starts</td><td>~16 Mar</td><td>~5 Feb (A)</td><td>~39</td></tr>
+    <tr><td>Suitability assessment complete</td><td>~16 Apr</td><td>~26 Feb (A)</td><td>~49</td></tr>
+    <tr><td>Approval to train sent</td><td>~23 Apr</td><td>~26 Feb</td><td>~56</td></tr>
+    <tr><td><b>Licence in hand — best case</b></td><td><b>~28 May 2027 (147 days)</b></td><td><b>~24 Mar 2027 (82 days)</b></td><td class="good">~65 days</td></tr>
+    <tr><td><b>Licence in hand — missing document</b></td><td><b>~6 Aug 2027 (217 days)</b></td><td><b>~31 Mar 2027 (89 days)</b></td><td class="good">~128 days</td></tr>
+  </table></div>
+  <p style="font-size:13px;color:var(--muted)"><i>Queue times are illustrative. Check them against the processing times SAPOL publishes on its "Status of my application" page.</i></p>
+
+  <h3>6.2 Delay Scenarios in the Current Process</h3>
+  <div class="tbl"><table>
+    <tr><th>Scenario</th><th>Added delay today</th><th>With online portal</th></tr>
+    <tr><td>Missing birth certificate or passport</td><td>3–6 weeks</td><td>Prevented at submission, or fixed in 1–3 days (A)</td></tr>
+    <tr><td>Request email goes to spam</td><td>+2–4 weeks</td><td>Request also visible in the portal (A)</td></tr>
+    <tr><td>Illegible or incorrect handwriting</td><td>+1–2 weeks</td><td>Typed, validated fields</td></tr>
+    <tr><td>Referral to another agency</td><td>+2–8 weeks</td><td>Still possible (complex cases), but tracked digitally</td></tr>
+  </table></div>
+  <div class="insight"><b>Key insight:</b> most of the delay is <b>waiting and rework</b>, not the assessment itself. Removing paper handling shortens the queue for everyone, not just the applicant who made the mistake.</div>
+</section>
+
+<section id="stakeholders">
+  <h2><span class="n">07</span>Stakeholder Analysis</h2>
+  <p class="lead">Nine stakeholder groups placed on a <b>power / interest grid</b> to decide how to engage each one.</p>
+  <div class="pgrid">
+    <div class="ax y">INFLUENCE →</div>
+    <div class="quad" style="background:#fff4e0"><h5 style="color:#b45309">Keep satisfied</h5><span class="chip">Government / Minister</span></div>
+    <div class="quad" style="background:#fde8e8"><h5 style="color:#b42318">Manage closely</h5><span class="chip">Registry</span><span class="chip">Adjudication</span><span class="chip">Branch management</span><span class="chip">ICT / project team</span></div>
+    <div class="ax y"></div>
+    <div class="quad" style="background:#eef0f3"><h5 style="color:#5b6877">Monitor</h5><small style="color:var(--muted)">—</small></div>
+    <div class="quad" style="background:#e6f6f6"><h5 style="color:#0b7a79">Keep informed</h5><span class="chip">Applicants</span><span class="chip">Dealers</span><span class="chip">Service points</span><span class="chip">Clubs &amp; industry</span></div>
+    <div></div><div class="ax" style="grid-column:2/4">INTEREST →</div>
+  </div>
+  <div class="tbl" style="margin-top:16px"><table>
+    <tr><th>Stakeholder</th><th>Interest</th><th>Influence</th><th>Key concern</th><th>Engagement</th></tr>
+    <tr><td><b>Firearms Branch – Registry</b></td><td>High</td><td>High</td><td>Workload, data quality, new system</td><td>Manage closely — workshops, training, feedback loops</td></tr>
+    <tr><td><b>Firearms Branch – Adjudication</b></td><td>High</td><td>High</td><td>Complete information, legal compliance</td><td>Manage closely — requirements workshops, UAT</td></tr>
+    <tr><td><b>Firearms Branch management</b></td><td>High</td><td>High</td><td>Backlog, performance, risk</td><td>Manage closely — progress reports, KPI dashboard</td></tr>
+    <tr><td><b>ICT / project team</b></td><td>Medium</td><td>High</td><td>Scope, security, integration</td><td>Manage closely — sign-off, change control</td></tr>
+    <tr><td><b>Government / Minister</b></td><td>Low</td><td>High</td><td>Public safety, public confidence</td><td>Keep satisfied — high-level reporting</td></tr>
+    <tr><td><b>Applicants / licence holders</b></td><td>High</td><td>Low</td><td>Speed, simplicity, knowing their status</td><td>Keep informed — guides, FAQs, status updates</td></tr>
+    <tr><td><b>Firearms dealers</b></td><td>High</td><td>Medium</td><td>Fast permits, easy portal</td><td>Keep informed / consult — user testing</td></tr>
+    <tr><td><b>Service points</b></td><td>Medium</td><td>Medium</td><td>Changing role as lodgement moves online</td><td>Keep informed — transition plan</td></tr>
+    <tr><td><b>Shooting clubs &amp; industry</b></td><td>Medium</td><td>Medium</td><td>Fair process, delays, communication</td><td>Keep informed — briefings</td></tr>
+  </table></div>
+  <div class="insight"><b>Insight:</b> the groups with the most influence are also the ones whose daily work changes most. Early involvement in requirements and testing is the biggest factor in adoption.</div>
+</section>
+
+<section id="requirements">
+  <h2><span class="n">08</span>Business Requirements</h2>
+  <p class="lead">Prioritised with <b>MoSCoW</b> and traced back to the objectives.</p>
+  <h3>8.1 Functional Requirements</h3>
+  <div class="tbl"><table>
+    <tr><th>ID</th><th>Requirement</th><th>Priority</th><th>Objective</th></tr>
+    <tr><td>BR-01</td><td>Applicants can apply for a new licence online, 24/7</td><td><span class="pill must">Must</span></td><td>O1, O4</td></tr>
+    <tr><td>BR-02</td><td>The form blocks submission when mandatory fields or documents are missing</td><td><span class="pill must">Must</span></td><td>O3</td></tr>
+    <tr><td>BR-03</td><td>Applicants can upload identity documents and a photo</td><td><span class="pill must">Must</span></td><td>O1</td></tr>
+    <tr><td>BR-04</td><td>Applicants can pay fees online</td><td><span class="pill must">Must</span></td><td>O1</td></tr>
+    <tr><td>BR-05</td><td>Automatic confirmation with a reference number</td><td><span class="pill must">Must</span></td><td>O4</td></tr>
+    <tr><td>BR-06</td><td>Application data flows into the register without re-typing</td><td><span class="pill must">Must</span></td><td>O2</td></tr>
+    <tr><td>BR-07</td><td>Officers work from a digital queue ordered by date received</td><td><span class="pill must">Must</span></td><td>O1</td></tr>
+    <tr><td>BR-08</td><td>Officers can request missing information through the portal</td><td><span class="pill should">Should</span></td><td>O3</td></tr>
+    <tr><td>BR-09</td><td>Applicants can view their application status</td><td><span class="pill should">Should</span></td><td>O4</td></tr>
+    <tr><td>BR-10</td><td>Outcomes are sent electronically</td><td><span class="pill must">Must</span></td><td>O1</td></tr>
+    <tr><td>BR-11</td><td>Licences are available digitally (mySA GOV app)</td><td><span class="pill should">Should</span></td><td>O1</td></tr>
+    <tr><td>BR-12</td><td>System enforces legislated rules (e.g. 28-day minimum for permits to acquire)</td><td><span class="pill must">Must</span></td><td>O5</td></tr>
+    <tr><td>BR-13</td><td>Full audit trail of actions and decisions</td><td><span class="pill must">Must</span></td><td>O5</td></tr>
+    <tr><td>BR-14</td><td>Management can report queue size and processing times</td><td><span class="pill should">Should</span></td><td>O1</td></tr>
+    <tr><td>BR-15</td><td>Applicants could receive SMS reminders for outstanding actions</td><td><span class="pill could">Could</span></td><td>O3</td></tr>
+    <tr><td>BR-16</td><td>Automated suitability decisions</td><td><span class="pill wont">Won't</span></td><td>O5 — decisions stay human</td></tr>
+  </table></div>
+  <h3>8.2 Non-Functional Requirements</h3>
+  <div class="g3">
+    <div class="card mini"><h4>🔒 Security</h4><p>Secure, verified login; role-based access for staff.</p></div>
+    <div class="card mini"><h4>🛡 Privacy</h4><p>Personal information protected under SA privacy principles.</p></div>
+    <div class="card mini"><h4>♿ Accessibility</h4><p>Portal meets WCAG 2.1 AA.</p></div>
+    <div class="card mini"><h4>🕑 Availability</h4><p>Available outside business hours.</p></div>
+    <div class="card mini"><h4>📝 Auditability</h4><p>Every change logged with user and time.</p></div>
+    <div class="card mini"><h4>👍 Usability</h4><p>First-time applicant completes the form without help.</p></div>
+  </div>
+  <div class="insight"><b>Traceability:</b> every pain point maps to at least one Must or Should requirement, and every requirement maps to an objective — keeping scope focused on what causes delay.</div>
+</section>
+
+<section id="change">
+  <h2><span class="n">09</span>Change Impact Assessment</h2>
+  <div class="tbl"><table>
+    <tr><th>Stakeholder</th><th>What changes</th><th>Impact</th><th>Risk if unmanaged</th><th>Support needed</th></tr>
+    <tr><td><b>Registry officers</b></td><td>Paper intake &amp; re-typing replaced by digital queue review</td><td><span class="pill hi">High</span></td><td>Slow adoption, workarounds, errors</td><td>Hands-on training, quick guides, super-users, go-live floor support</td></tr>
+    <tr><td><b>Adjudication officers</b></td><td>Assess on screen; record decisions digitally</td><td><span class="pill med">Medium</span></td><td>Concern about completeness</td><td>UAT involvement; clear audit trail</td></tr>
+    <tr><td><b>Management</b></td><td>New performance data and reporting</td><td><span class="pill med">Medium</span></td><td>Data not used for decisions</td><td>KPI dashboard, reporting routine</td></tr>
+    <tr><td><b>Applicants</b></td><td>Apply online instead of on paper</td><td><span class="pill hi">High</span></td><td>Digital exclusion</td><td>Guides, help line, <b>assisted digital option</b></td></tr>
+    <tr><td><b>Dealers</b></td><td>Online transactions and support</td><td><span class="pill med">Medium</span></td><td>Errors helping customers</td><td>Dealer guides, training</td></tr>
+    <tr><td><b>Service points</b></td><td>Fewer in-person lodgements</td><td><span class="pill med">Medium</span></td><td>Role uncertainty</td><td>Early communication, transition plan</td></tr>
+    <tr><td><b>Clubs &amp; industry</b></td><td>Members ask about the new process</td><td><span class="pill lo">Low</span></td><td>Misinformation</td><td>Briefings, FAQs</td></tr>
+  </table></div>
+  <h3>9.1 Risks and Mitigations</h3>
+  <div class="tbl"><table>
+    <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+    <tr><td>Applicants with low digital skills left behind</td><td><span class="pill med">Medium</span></td><td><span class="pill hi">High</span></td><td>Assisted option; clear guides; help line</td></tr>
+    <tr><td>Temporary backlog increase at go-live</td><td><span class="pill hi">High</span></td><td><span class="pill med">Medium</span></td><td>Phased rollout; extra staff; brief parallel running</td></tr>
+    <tr><td>Data migration errors</td><td><span class="pill med">Medium</span></td><td><span class="pill hi">High</span></td><td>Data cleansing; reconciliation checks</td></tr>
+    <tr><td>Staff resistance to change</td><td><span class="pill med">Medium</span></td><td><span class="pill med">Medium</span></td><td>Early involvement, super-users, show time savings</td></tr>
+    <tr><td>Security or privacy breach</td><td><span class="pill lo">Low</span></td><td><span class="pill hi">High</span></td><td>Security testing, role-based access, audit logging</td></tr>
+  </table></div>
+  <h3>9.2 Risk Reduction for People</h3>
+  <div class="g2">
+    <div class="card mini"><h4>Fewer licence errors</h4><p>Details entered once by the applicant and checked by the system.</p></div>
+    <div class="card mini"><h4>Public safety protected</h4><p>Suitability decisions stay with trained officers; legislated waiting periods enforced by the system.</p></div>
+    <div class="card mini"><h4>Less personal info on paper</h4><p>Lower risk of documents lost in transit or misfiled.</p></div>
+    <div class="card mini"><h4>Complete audit trail</h4><p>Every decision can be reviewed.</p></div>
+  </div>
+</section>
+
+<section id="dashboard">
+  <h2><span class="n">10</span>Power BI Dashboard: Licensing Performance</h2>
+  <p class="lead">Designed to show how the change would be <b>measured</b>. <b>All data is fictional sample data</b> (~2,400 applications over 24 months: 12 paper, 12 online). Click the tabs to switch pages.</p>
+
+  <div class="dash">
+    <div class="top">
+      <div class="title">Firearms Licensing Performance — Before vs After</div>
+      <div class="dtabs">
+        <button class="on" data-p="p1">Executive Overview</button>
+        <button data-p="p2">Process &amp; Bottlenecks</button>
+        <button data-p="p3">Quality &amp; Rework</button>
+      </div>
+    </div>
+    <div class="slicers"><span>App type: All ▾</span><span>Channel: Paper | Online</span><span>Region: Metro | Regional</span><span>Month: Jan 26 – Dec 27</span></div>
+
+    <div class="dpanel on" id="p1">
+      <div class="dk">
+        <div><b>85</b><small>Avg days to licence (online)</small></div>
+        <div><b>147</b><small>Avg days to licence (paper)</small></div>
+        <div><b>95%</b><small>Complete at first submission</small></div>
+        <div><b>91%</b><small>Applications lodged online</small></div>
+      </div>
+      <div class="dcharts">
+        <div class="dc"><h6>Average days to licence by month</h6>
+          <svg viewBox="0 0 400 180" width="100%">
+            <line x1="30" y1="150" x2="390" y2="150" stroke="#2b3d55"/>
+            <line x1="210" y1="10" x2="210" y2="150" stroke="#f59e0b" stroke-dasharray="4 4"/>
+            <text x="214" y="22" fill="#f59e0b" font-size="10">Go-live</text>
+            <polyline fill="none" stroke="#9aa5b1" stroke-width="3" points="35,48 50,44 65,46 80,40 95,42 110,38 125,41 140,36 155,39 170,37 185,40 200,38"/>
+            <polyline fill="none" stroke="#1f6feb" stroke-width="3" points="215,30 230,60 245,78 260,88 275,95 290,98 305,100 320,99 335,101 350,100 365,102 380,101"/>
+            <text x="35" y="168" fill="#8aa2bb" font-size="10">Jan 26</text><text x="180" y="168" fill="#8aa2bb" font-size="10">Dec 26</text><text x="350" y="168" fill="#8aa2bb" font-size="10">Dec 27</text>
+            <text x="2" y="44" fill="#8aa2bb" font-size="10">150</text><text x="2" y="104" fill="#8aa2bb" font-size="10">85</text>
+          </svg></div>
+        <div class="dc"><h6>Applications received vs decided per month</h6>
+          <svg viewBox="0 0 400 180" width="100%" id="recvdec"></svg>
+          <div style="font-size:11.5px;color:#8aa2bb"><span style="color:#0ea5a4">■</span> Received &nbsp; <span style="color:#1f6feb">■</span> Decided</div></div>
+      </div>
+    </div>
+
+    <div class="dpanel" id="p2">
+      <div class="dcharts">
+        <div class="dc"><h6>Average days in each stage — Paper vs Online</h6>
+          <svg viewBox="0 0 400 150" width="100%">
+            <text x="0" y="45" fill="#cfe0f2" font-size="12">Paper</text>
+            <rect x="50" y="30" width="18" height="24" fill="#64748b"/><rect x="68" y="30" width="150" height="24" fill="#e5484d"/><rect x="218" y="30" width="10" height="24" fill="#f59e0b"/><rect x="228" y="30" width="70" height="24" fill="#a78bfa"/><rect x="298" y="30" width="80" height="24" fill="#0ea5a4"/>
+            <text x="0" y="95" fill="#cfe0f2" font-size="12">Online</text>
+            <rect x="50" y="80" width="80" height="24" fill="#e5484d"/><rect x="130" y="80" width="45" height="24" fill="#a78bfa"/><rect x="175" y="80" width="55" height="24" fill="#0ea5a4"/>
+            <text x="50" y="130" fill="#8aa2bb" font-size="10">■ Transit</text><text x="110" y="130" fill="#e5484d" font-size="10">■ Queue</text><text x="160" y="130" fill="#f59e0b" font-size="10">■ Data entry</text><text x="235" y="130" fill="#a78bfa" font-size="10">■ Assessment</text><text x="315" y="130" fill="#0ea5a4" font-size="10">■ Training/issue</text>
+          </svg></div>
+        <div class="dc"><h6>Funnel — online channel (sample)</h6>
+          <svg viewBox="0 0 400 160" width="100%">
+            <rect x="20" y="8" width="360" height="24" rx="4" fill="#1f6feb"/><text x="30" y="25" fill="#fff" font-size="12">Lodged 1,200</text>
+            <rect x="35" y="38" width="330" height="24" rx="4" fill="#2f7cf0"/><text x="45" y="55" fill="#fff" font-size="12">Complete 1,140</text>
+            <rect x="50" y="68" width="300" height="24" rx="4" fill="#3f8af5"/><text x="60" y="85" fill="#fff" font-size="12">Assessed 1,100</text>
+            <rect x="65" y="98" width="270" height="24" rx="4" fill="#0ea5a4"/><text x="75" y="115" fill="#fff" font-size="12">Approved 1,040</text>
+            <rect x="80" y="128" width="240" height="24" rx="4" fill="#16a34a"/><text x="90" y="145" fill="#fff" font-size="12">Licence issued 1,010</text>
+          </svg></div>
+      </div>
+      <div class="dc" style="margin-top:12px"><h6>Oldest applications on hand (top 5, sample)</h6>
+        <table style="color:#dbe7f5;font-size:12.5px"><tr><th style="background:#1b2a3f;color:#cfe0f2">App ID</th><th style="background:#1b2a3f;color:#cfe0f2">Type</th><th style="background:#1b2a3f;color:#cfe0f2">Channel</th><th style="background:#1b2a3f;color:#cfe0f2">Days waiting</th></tr>
+        <tr><td>A-10482</td><td>New licence</td><td>Paper</td><td>96</td></tr><tr><td>A-10511</td><td>New licence</td><td>Paper</td><td>91</td></tr><tr><td>A-10533</td><td>Renewal</td><td>Paper</td><td>88</td></tr><tr><td>A-11204</td><td>New licence</td><td>Online</td><td>41</td></tr><tr><td>A-11219</td><td>PTA</td><td>Online</td><td>38</td></tr></table></div>
+    </div>
+
+    <div class="dpanel" id="p3">
+      <div class="dk">
+        <div><b>30% → 5%</b><small>Rework rate (paper → online)</small></div>
+        <div><b>30 → 3</b><small>Avg rework days</small></div>
+        <div><b>0</b><small>Data entry corrections (online)</small></div>
+      </div>
+      <div class="dcharts">
+        <div class="dc"><h6>Rework reasons (paper channel)</h6>
+          <svg viewBox="0 0 400 150" width="100%">
+            <text x="0" y="24" fill="#cfe0f2" font-size="11">Missing ID document</text><rect x="140" y="12" width="230" height="18" fill="#e5484d"/>
+            <text x="0" y="58" fill="#cfe0f2" font-size="11">Illegible details</text><rect x="140" y="46" width="130" height="18" fill="#f59e0b"/>
+            <text x="0" y="92" fill="#cfe0f2" font-size="11">Missing signature</text><rect x="140" y="80" width="90" height="18" fill="#a78bfa"/>
+            <text x="0" y="126" fill="#cfe0f2" font-size="11">Payment issue</text><rect x="140" y="114" width="50" height="18" fill="#0ea5a4"/>
+          </svg></div>
+        <div class="dc"><h6>Rework rate by month</h6>
+          <svg viewBox="0 0 400 150" width="100%">
+            <line x1="20" y1="130" x2="390" y2="130" stroke="#2b3d55"/>
+            <line x1="205" y1="10" x2="205" y2="130" stroke="#f59e0b" stroke-dasharray="4 4"/>
+            <polyline fill="none" stroke="#9aa5b1" stroke-width="3" points="25,40 40,36 55,42 70,38 85,35 100,40 115,37 130,39 145,36 160,41 175,38 190,37"/>
+            <polyline fill="none" stroke="#1f6feb" stroke-width="3" points="210,60 225,95 240,108 255,113 270,115 285,116 300,117 315,116 330,117 345,118 360,117 375,118"/>
+            <text x="22" y="30" fill="#9aa5b1" font-size="10">~30% paper</text><text x="300" y="108" fill="#1f6feb" font-size="10">~5% online</text>
+          </svg></div>
+      </div>
+    </div>
+    <div class="watermark">Illustrative mock-up of the Power BI report · fictional sample data · Paper = grey, Online = blue</div>
+  </div>
+
+  <h3>10.1 KPIs and Targets</h3>
+  <div class="tbl"><table>
+    <tr><th>KPI</th><th>Definition</th><th>Paper baseline (sample)</th><th>Online target</th></tr>
+    <tr><td>Average days to licence</td><td>Lodged date to licence issued date</td><td>~147 days</td><td>≤ 90 days</td></tr>
+    <tr><td>Complete at first submission</td><td>% with no information request</td><td>~70%</td><td>≥ 95%</td></tr>
+    <tr><td>Rework rate</td><td>% needing ≥1 information request</td><td>~30%</td><td>≤ 5%</td></tr>
+    <tr><td>Average rework duration</td><td>Request sent to information received</td><td>~30 days</td><td>≤ 3 days</td></tr>
+    <tr><td>Applications on hand</td><td>Lodged but not yet decided</td><td>Growing</td><td>Stable or falling</td></tr>
+    <tr><td>Manual data entry</td><td>Applications re-typed by staff</td><td>100%</td><td>0%</td></tr>
+    <tr><td>Online uptake</td><td>% lodged online</td><td>0%</td><td>≥ 90% within 12 months</td></tr>
+  </table></div>
+
+  <h3>10.2 Data Model (Star Schema)</h3>
+  <div class="g3">
+    <div class="card mini" style="border:2px solid var(--blue)"><h4>FactApplications</h4><p>ApplicationID, LodgedDate, ReceivedDate, AssessmentStartDate, DecisionDate, LicenceIssuedDate, Channel, Outcome, ReworkCount, ReworkDays, AppTypeKey, RegionKey</p></div>
+    <div class="card mini"><h4>DimDate</h4><p>Date, Month, Quarter, Year, IsAfterGoLive</p></div>
+    <div class="card mini"><h4>DimAppType</h4><p>New licence, Renewal, Permit to acquire</p></div>
+    <div class="card mini"><h4>DimRegion</h4><p>Metro, Regional</p></div>
+    <div class="card mini"><h4>DimReworkReason</h4><p>ReasonKey, Reason</p></div>
+  </div>
+
+  <h3>10.3 Key DAX Measures</h3>
+<pre>Avg Days to Licence =
+AVERAGEX (
+    FILTER ( FactApplications, NOT ISBLANK ( FactApplications[LicenceIssuedDate] ) ),
+    DATEDIFF ( FactApplications[LodgedDate], FactApplications[LicenceIssuedDate], DAY )
+)
+
+Rework Rate % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( FactApplications ), FactApplications[ReworkCount] > 0 ),
+    COUNTROWS ( FactApplications )
+)
+
+Applications On Hand =
+CALCULATE ( COUNTROWS ( FactApplications ), ISBLANK ( FactApplications[DecisionDate] ) )
+
+Online Uptake % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( FactApplications ), FactApplications[Channel] = "Online" ),
+    COUNTROWS ( FactApplications )
+)</pre>
+
+  <h3>10.4 Sample Findings</h3>
+  <div class="g2">
+    <div class="card mini"><h4>⏱ ~147 → ~85 days</h4><p>Time to licence falls after go-live, driven mostly by shorter queue and transit stages.</p></div>
+    <div class="card mini"><h4>🔁 ~30% → ~5% rework</h4><p>Validation stops incomplete submissions.</p></div>
+    <div class="card mini"><h4>📈 Short spike at go-live</h4><p>Applications on hand rise briefly — why a phased rollout and extra staffing matter.</p></div>
+    <div class="card mini"><h4>🌾 Regional applicants gain most</h4><p>They no longer travel to lodge.</p></div>
+  </div>
+
+  <h3>10.5 How I Built It</h3>
+  <ol>
+    <li>Created sample data in Excel with realistic date ranges for each stage.</li>
+    <li>Cleaned and typed the data in <b>Power Query</b>.</li>
+    <li>Built the star schema and relationships in the model view.</li>
+    <li>Wrote DAX measures for each KPI.</li>
+    <li>Designed three report pages with consistent colour: Paper (grey) vs Online (blue).</li>
+    <li>Added slicers and drill-through from the trend chart to application details.</li>
+  </ol>
+</section>
+
+<section id="results">
+  <h2><span class="n">11</span>Projected Results and Benefits</h2>
+  <div class="tbl"><table>
+    <tr><th>Benefit area</th><th>Projected result</th><th>How it is measured</th></tr>
+    <tr><td><b>Time saved for applicants</b></td><td>~65 days faster (best case); ~128 days faster when a document is missing</td><td>Avg Days to Licence</td></tr>
+    <tr><td><b>Automation</b></td><td>7 of 8 key steps automated: validation, data capture, confirmation, status, information requests, outcome notice, digital licence</td><td>Process map comparison</td></tr>
+    <tr><td><b>Error reduction</b></td><td>Double data entry removed; incomplete applications largely prevented</td><td>Rework Rate %, data corrections</td></tr>
+    <tr><td><b>Staff capacity</b></td><td>Time on re-typing, chasing documents and status calls redirected to assessment</td><td>Applications decided per officer</td></tr>
+    <tr><td><b>Access and equity</b></td><td>Apply 24/7 from anywhere; no travel for regional applicants</td><td>Online uptake by region</td></tr>
+    <tr><td><b>Public safety and compliance</b></td><td>Suitability decisions stay human; legislated rules enforced; full audit trail</td><td>Audit log, compliance checks</td></tr>
+  </table></div>
+</section>
+
+<section id="stories">
+  <h2><span class="n">12</span>User Stories</h2>
+  <p class="lead">Format: <b>As a [user], I want [goal], so that [benefit]</b>, with acceptance criteria in <b>Given / When / Then</b>.</p>
+  <div class="story">
+    <div style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.5px">WORKED EXAMPLE · US-01 · APPLY ONLINE</div>
+    <blockquote><b>As an</b> applicant, <b>I want</b> to apply for a firearms licence online, <b>so that</b> I don't have to complete a paper form and visit a service point.</blockquote>
+    <div class="stats" style="margin:0 0 6px"><span class="stat">Linked: BR-01, BR-02, BR-03, BR-04</span><span class="stat">Priority: Must</span><span class="stat">Estimate: 8 points</span></div>
+    <ol class="ac">
+      <li><span class="kw">Given</span> I am logged in, <span class="kw">when</span> I complete all mandatory fields, upload documents, pay and submit, <span class="kw">then</span> my application is lodged and I see a confirmation screen.</li>
+      <li><span class="kw">Given</span> a mandatory field or document is missing, <span class="kw">when</span> I click Submit, <span class="kw">then</span> the missing items are highlighted and the application is not submitted.</li>
+      <li><span class="kw">Given</span> my payment fails, <span class="kw">when</span> I submit, <span class="kw">then</span> I see an error and my form data is kept so I can try again.</li>
+      <li><span class="kw">Given</span> I save and leave part-way, <span class="kw">when</span> I log back in, <span class="kw">then</span> my draft is restored.</li>
+    </ol>
+    <p style="margin:8px 0 0;font-size:14px"><b>Definition of done:</b> acceptance criteria pass in UAT · accessibility check passed · Registry and applicant representatives have signed off.</p>
+  </div>
+  <h3>Full Story Set</h3>
+  <div class="tbl"><table>
+    <tr><th>ID</th><th>User story</th><th>Acceptance criteria (summary)</th><th>Priority</th></tr>
+    <tr><td>US-01</td><td>As an <b>applicant</b>, I want to apply online, so that I don't need to visit a service point</td><td>Lodged when complete; blocked when incomplete</td><td><span class="pill must">Must</span></td></tr>
+    <tr><td>US-02</td><td>As an <b>applicant</b>, I want instant confirmation, so that I know my application arrived</td><td>Email with reference within 10 minutes; shown in portal</td><td><span class="pill must">Must</span></td></tr>
+    <tr><td>US-03</td><td>As an <b>applicant</b>, I want to see my status, so that I don't need to call the branch</td><td>Received / Under review / Info requested / Decided</td><td><span class="pill should">Should</span></td></tr>
+    <tr><td>US-04</td><td>As a <b>Registry officer</b>, I want to request missing documents in the portal, so that the applicant responds quickly</td><td>Applicant notified by portal and email; status updates</td><td><span class="pill should">Should</span></td></tr>
+    <tr><td>US-05</td><td>As a <b>Registry officer</b>, I want applications in a digital queue already filled in, so that I don't re-type forms</td><td>Data complete, ordered by date received</td><td><span class="pill must">Must</span></td></tr>
+    <tr><td>US-06</td><td>As an <b>Adjudication officer</b>, I want to record my decision in the system, so that the applicant is notified and there is an audit trail</td><td>Outcome sent electronically; decision, officer and time logged</td><td><span class="pill must">Must</span></td></tr>
+    <tr><td>US-07</td><td>As a <b>manager</b>, I want a report of queue size and processing times, so that I can manage the backlog</td><td>On hand and average days shown by type</td><td><span class="pill should">Should</span></td></tr>
+    <tr><td>US-08</td><td>As a <b>dealer</b>, I want to check a customer's licence status online, so that I complete a sale correctly</td><td>Valid / not valid shown for a licence number</td><td><span class="pill should">Should</span></td></tr>
+  </table></div>
+</section>
+
+<section id="casestudy">
+  <h2><span class="n">13</span>One-Page Case Study (STAR)</h2>
+  <div class="star">
+    <div class="card S"><h4>Situation</h4><p>New firearms licence applications in SA relied on paper forms, in-person lodgement and manual re-typing, leading to waits of around five months.</p></div>
+    <div class="card T"><h4>Task</h4><p>As a frontline Firearms Branch officer, analyse the process from a BA perspective and model the impact of moving to the publicly announced online SAFR portal.</p></div>
+    <div class="card A"><h4>Action</h4><p>BPMN as-is/to-be maps · 5 Whys · 1 January time-to-licence model · 9-group stakeholder grid · 16 requirements, 6 NFRs, 8 user stories · change impact &amp; risks · Power BI KPI dashboard.</p></div>
+    <div class="card R"><h4>Result (projected)</h4><p><b>~147 → ~82 days</b> (44% faster); up to <b>~128 days</b> faster with missing documents · <b>7 of 8</b> steps automated · rework <b>~30% → ≤5%</b> · decisions stay human.</p></div>
+  </div>
+  <div class="skills"><span>Process modelling</span><span>Root cause analysis</span><span>Stakeholder analysis</span><span>Requirements elicitation</span><span>MoSCoW</span><span>User stories</span><span>Change management</span><span>KPI design</span><span>Power BI &amp; DAX</span><span>Regulatory awareness</span></div>
+</section>
+
+<section id="learned">
+  <h2><span class="n">14</span>What I Learned</h2>
+  <div class="g2">
+    <div class="card mini"><h4>Most delay is waiting, not working</h4><p>Queue time and rework loops — not the assessment — drive time to licence.</p></div>
+    <div class="card mini"><h4>Validation at the start saves weeks later</h4><p>One rule — "you can't submit without your ID document" — removes the most common rework loop.</p></div>
+    <div class="card mini"><h4>Automation should stop where judgement starts</h4><p>In a regulated public-safety service, automate the paperwork and keep decisions with trained people.</p></div>
+    <div class="card mini"><h4>Change impact matters as much as the system</h4><p>Digital exclusion and go-live backlogs are the biggest risks — both need a plan before launch.</p></div>
+  </div>
+</section>
+
+<section id="about">
+  <h2><span class="n">15</span>About Me</h2>
+  <div class="card" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+    <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;display:grid;place-items:center;font-size:26px;font-weight:800">MA</div>
+    <div style="flex:1;min-width:240px">
+      <p style="margin:0 0 8px">I'm <b>Marshal Anthony</b>, an Adelaide-based public sector officer with a <b>Master of Computer Science</b> (University of Adelaide) and frontline experience in regulatory licensing at SAPOL. I'm moving into <b>Business Analyst</b> roles where I can combine an understanding of legislation and operations with technology and data.</p>
+      <p style="margin:0"><a href="https://www.linkedin.com/in/marshalanthony/">LinkedIn</a> · marshal007anthony@gmail.com</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap"><b>Disclaimer:</b> This is an independent portfolio case study. It is not affiliated with, endorsed by, or representative of South Australia Police. All figures are illustrative estimates and all dashboard data is fictional. No confidential information has been used.</div></footer>
+<button class="toTop" id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+// Dashboard tabs
+document.querySelectorAll('.dtabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.dtabs button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.dpanel').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); document.getElementById(b.dataset.p).classList.add('on');
+}));
+// Received vs decided chart
+(function(){
+  const s=document.getElementById('recvdec'); if(!s) return;
+  const rec=[100,98,102,104,99,101,103,100,98,102,100,101,110,104,99,97,100,98,101,99,100,98,97,99];
+  const dec=[88,90,87,89,86,90,88,87,89,86,88,87,80,96,104,106,103,102,101,100,101,99,98,100];
+  let h='<line x1="10" y1="160" x2="395" y2="160" stroke="#2b3d55"/>';
+  rec.forEach((r,i)=>{const x=12+i*16;
+    h+=`<rect x="${x}" y="${160-r*1.3}" width="6" height="${r*1.3}" fill="#0ea5a4"/>`;
+    h+=`<rect x="${x+7}" y="${160-dec[i]*1.3}" width="6" height="${dec[i]*1.3}" fill="#1f6feb"/>`;});
+  h+='<line x1="203" y1="10" x2="203" y2="160" stroke="#f59e0b" stroke-dasharray="4 4"/><text x="207" y="20" fill="#f59e0b" font-size="10">Go-live</text>';
+  s.innerHTML=h;
+})();
+// Active nav link + back to top
+const links=[...document.querySelectorAll('#navlinks a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const tt=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{
+  let i=0; secs.forEach((s,k)=>{ if(s && s.getBoundingClientRect().top<140) i=k; });
+  links.forEach(l=>l.classList.remove('active')); links[i].classList.add('active');
+  tt.classList.toggle('show',window.scrollY>600);
+},{passive:true});
+tt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

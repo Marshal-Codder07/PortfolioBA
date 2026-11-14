@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>try{var t=localStorage.getItem('ma-theme');if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='light'}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marshal Anthony | Business Analyst · Data Analyst</title>
 <meta name="description" content="Marshal Anthony – Adelaide-based Business Analyst and Data Analyst. SA public sector, Master of Computer Science, BA case studies and projects.">
@@ -223,6 +224,40 @@ footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:14px;bor
 .totop.show{opacity:1;pointer-events:auto}
 
 /* ===== Responsive ===== */
+
+.theme-btn{position:relative;width:62px;height:32px;border-radius:999px;border:1px solid var(--tb-b);background:var(--tb-bg);cursor:pointer;flex:none;padding:0;transition:background .4s}
+.theme-btn .knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 12px rgba(245,158,11,.6);display:grid;place-items:center;font-size:13px;transition:transform .45s cubic-bezier(.6,-.3,.3,1.4),background .4s}
+.theme-btn .knob::before{content:"☀"}
+[data-theme=dark] .theme-btn .knob{transform:translateX(30px);background:linear-gradient(135deg,#1e293b,#334155);box-shadow:0 0 12px rgba(96,165,250,.6)}
+[data-theme=dark] .theme-btn .knob::before{content:"☾";color:#bfdbfe}
+.theme-btn .stars{position:absolute;inset:0;border-radius:999px;overflow:hidden;opacity:0;transition:opacity .4s}
+.theme-btn .stars::before,.theme-btn .stars::after{content:"";position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;top:9px;left:12px;box-shadow:6px 8px #fff,12px 2px #fff}
+[data-theme=dark] .theme-btn .stars{opacity:1}
+html{transition:background-color .4s}
+body,.glass,.card,.tbl,.kpi,.phase,.lanes,nav,header.nav{transition:background-color .4s,color .4s,border-color .4s}
+
+:root{--tb-bg:#e2e8f0;--tb-b:rgba(15,42,68,.12)}
+[data-theme=dark]{--bg:#060a14;--bg2:#0b1222;--ink:#e6edf8;--muted:#98a6c0;--line:rgba(255,255,255,.07);
+  --g1:#60a5fa;--g2:#3b82f6;--g3:#2dd4bf;--cyan:#2dd4bf;--glass:rgba(255,255,255,.045);--glass-b:rgba(255,255,255,.1);--tb-bg:#0f172a;--tb-b:rgba(255,255,255,.15)}
+[data-theme=dark] .blob{opacity:.28}
+[data-theme=dark] header.nav{background:rgba(8,13,26,.6)}
+[data-theme=dark] .links a:hover,[data-theme=dark] .links a.active{background:rgba(255,255,255,.07)}
+[data-theme=dark] .links{background:rgba(8,13,26,.96)}
+[data-theme=dark] .glass{box-shadow:none}
+[data-theme=dark] .orb .inner{background:radial-gradient(circle at 30% 25%,#1a2540,#080d1a 70%)}
+[data-theme=dark] .org,[data-theme=dark] .ecard .school{color:#c3cee3}
+[data-theme=dark] .tags span{background:rgba(96,165,250,.1);border-color:rgba(96,165,250,.2);color:#bfdbfe}
+[data-theme=dark] .pmetrics div{background:rgba(0,0,0,.25)}
+[data-theme=dark] .mini-flow span,[data-theme=dark] .ig,[data-theme=dark] .crow{background:rgba(255,255,255,.04)}
+[data-theme=dark] .tl-item .tl-photo,[data-theme=dark] .cert .img{background:rgba(255,255,255,.02)}
+[data-theme=dark] .track{background:rgba(255,255,255,.08)}
+[data-theme=dark] .pbadge.soon{background:rgba(255,255,255,.08)}
+[data-theme=dark] .field input,[data-theme=dark] .field textarea{background:rgba(0,0,0,.3)}
+[data-theme=dark] .btn-ghost:hover{background:rgba(255,255,255,.1)}
+[data-theme=dark] .pcard:hover{box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 40px rgba(45,212,191,.18)}
+[data-theme=dark] .pcard .shine{background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.1),transparent 40%)}
+[data-theme=dark] .cursor-glow{background:radial-gradient(circle,rgba(45,212,191,.12),transparent 60%)}
+.nav-right{display:flex;align-items:center;gap:10px}
 @media(max-width:960px){
   .links{position:fixed;top:74px;left:14px;right:14px;flex-direction:column;padding:12px;border-radius:18px;background:rgba(255,255,255,.97);border:1px solid var(--glass-b);display:none}
   .links.open{display:flex}
@@ -258,8 +293,7 @@ footer{padding:40px 24px;text-align:center;color:var(--muted);font-size:14px;bor
     <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a>
     <a href="#skills">Skills</a><a href="#certs">Certifications</a><a href="#education">Education</a><a href="#contact">Contact</a>
   </nav>
-  <a href="#contact" class="btn btn-primary btn-sm">Let's talk</a>
-  <button class="burger" id="burger" aria-label="Menu">☰</button>
+  <div class="nav-right"><button class="theme-btn" type="button" aria-label="Toggle dark mode"><span class="stars"></span><span class="knob"></span></button><a href="#contact" class="btn btn-primary btn-sm">Let's talk</a><button class="burger" id="burger" aria-label="Menu">☰</button></div>
 </header>
 
 <!-- ================= HOME ================= -->
@@ -598,7 +632,7 @@ if(!reduce&&matchMedia('(hover:hover)').matches){
   function draw(){x.clearRect(0,0,W,H);
     for(let i=0;i<P.length;i++){const p=P[i];p.x+=p.vx;p.y+=p.vy;
       if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-      x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fillStyle='rgba(37,99,235,.45)';x.fill();
+      x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fillStyle=document.documentElement.dataset.theme==='dark'?'rgba(147,197,253,.65)':'rgba(37,99,235,.45)';x.fill();
       for(let j=i+1;j<P.length;j++){const q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);
         if(d<130){x.strokeStyle=`rgba(13,148,136,${.22*(1-d/130)})`;x.lineWidth=1;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}}
     if(!reduce)requestAnimationFrame(draw)}
@@ -633,6 +667,17 @@ document.getElementById('cform').addEventListener('submit',e=>{
   const f=document.getElementById('fmsg');f.style.display='block';
   f.textContent='Opening your email app… If nothing happens, email marshal007anthony@gmail.com directly.';
 });
+
+/* Theme switch — shared across all pages via localStorage key 'ma-theme' */
+(function(){
+  const root=document.documentElement;
+  function set(t){root.dataset.theme=t;try{localStorage.setItem('ma-theme',t)}catch(e){}
+    document.querySelectorAll('.theme-btn').forEach(b=>{b.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');b.title=b.getAttribute('aria-label')});
+    window.dispatchEvent(new Event('themechange'))}
+  document.querySelectorAll('.theme-btn').forEach(b=>b.addEventListener('click',()=>set(root.dataset.theme==='dark'?'light':'dark')));
+  set(root.dataset.theme||'light');
+  addEventListener('storage',e=>{if(e.key==='ma-theme'&&e.newValue)set(e.newValue)});
+})();
 </script>
 </body>
 </html>
